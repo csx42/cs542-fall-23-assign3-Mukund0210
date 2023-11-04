@@ -1,4 +1,4 @@
-package courseSequencer.driver.util;
+package courseSequencer.util;
 
 public interface FileInterface {
     public String getFileInput();

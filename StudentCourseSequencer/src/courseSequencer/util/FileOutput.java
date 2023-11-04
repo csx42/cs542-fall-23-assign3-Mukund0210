@@ -1,4 +1,4 @@
-package courseSequencer.driver.util;
+package courseSequencer.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
