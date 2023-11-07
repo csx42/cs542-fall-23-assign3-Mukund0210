@@ -1,17 +1,20 @@
 package courseSequencer.state;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class Group1 implements CourseSequencerStateI {
-    ArrayList<String> g1WaitingList = new ArrayList<>();
+    ArrayList<String> g1registeredList = new ArrayList<>();
+    Queue<String> g1WaitingList = new ArrayDeque<>();
     
 
     Semester semester = new Semester();
-    
-    int g1CurrSemester = 0;
-    int g1PrevSemester = 0;
 
-    String[] g1CoursesList = {"A", "B", "C", "D"};
+    int g1CurrEntry = 0;
+    int g1PrevEntry = 0;
+
+    String[] g1Courses = {"A", "B", "C", "D"};
 
     boolean stateSet = false;
 
@@ -21,28 +24,49 @@ public class Group1 implements CourseSequencerStateI {
         stateSet = true;
     }
 
-    public void register(String course){
+    public void register(String course, String option){
 
-        semester.courseList.add(course);
-        coursesRegistered =+ 1;
+        if(option.equals("Register")){
+            semester.courseList.add(course);
+            g1registeredList.add(course);
+            coursesRegistered =+ 1;
+            g1PrevEntry += 1;
+
+            if(semester.courseList.size() % 3 == 0){
+                semester.prevSemester = semester.currSemester;
+                semester.currSemester += 1; 
+            }
+        }
+        else if(option.equals("Waiting List")){
+            g1WaitingList.add(course);
+        }
+        
 
     }
 
-    public boolean checkCourses(String course){
-        
-        g1CurrSemester = semester.getCurrSemester();
+    public String checkCourses(String course){
 
-        if(g1CurrSemester > g1PrevSemester && g1WaitingList.isEmpty()){
-
-            g1CoursesList[semester.courseList.size() + 1] = course;
-            
-        } 
-        else{
-            g1WaitingList.add(course);
-
-            
+        for(int i  = 0; i<g1Courses.length; i++){
+            if(g1Courses[i] == course){
+                g1CurrEntry = i;
+            }
         }
 
+
+        if(semester.prevSemester < semester.currSemester && coursesRegistered == g1CurrEntry){
+            return "Register";
+        }
+        else if(semester.prevSemester < semester.currSemester && coursesRegistered < g1CurrEntry){
+            return "Waiting List";
+        }
+        
+        return "";
+
+
+    }
+
+    public int checkCurrentSum(){
+        return coursesRegistered;
     }
 
 
