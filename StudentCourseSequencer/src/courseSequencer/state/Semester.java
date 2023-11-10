@@ -1,11 +1,22 @@
 package courseSequencer.state;
-
 import java.util.ArrayList;
-import java.util.stream.Stream;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import courseSequencer.util.GroupIdentifier;
 
 public class Semester {
 
     ArrayList<String> courseList = new ArrayList<>();
+    public Queue<String> waitingQueue = new LinkedList<>();
+    GroupIdentifier groupIdentifier = new GroupIdentifier();
+    Group1 group1 = new Group1();
+    Group2 group2 = new Group2();
+    Group3 group3 = new Group3();
+    Group4 group4 = new Group4();
+    Group5 group5 = new Group5();
+
+    public int stateChanges = 0;
 
    int currSemester = 1;
    int prevSemester = 0;
@@ -36,4 +47,44 @@ public class Semester {
         return g5Sum;
 
    }
+
+
+   public void waitingListAllotment(Queue<String> waitingQueue){
+        
+        String currCourse = waitingQueue.poll();
+        String group = groupIdentifier.findGroup(currCourse);
+        if(group.equals("Group 1")){
+            String option = group1.checkCourses(currCourse);
+            group1.register(currCourse, option);
+        }
+        else if(group.equals("Group 2")){
+        
+        }
+        else if(group.equals("Group 3")){
+
+        }
+        else if(group.equals("Group 4")){
+
+        }
+        else{
+
+        }
+
+        if(!waitingQueue.isEmpty()){
+            waitingListAllotment(waitingQueue);
+        }
+   }
+
+
+   public void reset(){
+
+        courseList.clear();
+        waitingQueue.clear();
+        group1.coursesRegistered = 0;
+        group2.coursesRegistered = 0;
+        group3.coursesRegistered = 0;
+        group4.coursesRegistered = 0;
+        group5.coursesRegistered = 0;
+   }
+
 }

@@ -24,7 +24,7 @@ public class FileOutput implements FileOutputInterface{
      * @param ob2SumUpdated
      * @param ob3SumUpdated
      */
-    public void putFileOutput(String filename, StringBuilder rootmap, StringBuilder backupmap1, StringBuilder backupmap2, StringBuilder backupmap3, int rootSum, int rootSumUpdated, int ob1Sum, int ob2Sum, int ob3Sum, int ob1SumUpdated, int ob2SumUpdated, int ob3SumUpdated){
+    public void putFileOutput(String filename, String studentID, String courses, int stateChanges){
         
         String currDirectory = System.getProperty("user.dir");
         String resultsPath = currDirectory + File.separator + filename;
@@ -33,7 +33,7 @@ public class FileOutput implements FileOutputInterface{
 
             FileWriter filewriter = new FileWriter(resultsPath,true);
             BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
-            String contentToWrite = "\n//Inorder traversal\n"+ "\nBST: "+ rootmap.toString() + "\nBackup-1: "+ backupmap1.toString() + "\nBackup-2: "+ backupmap2.toString() + "\nBackup-3: "+ backupmap3.toString() + "\n" + "\n//Sum of all the numbers in each tree\n" + "\nBST: " + rootSum + "\nBackup-1: "+ ob1Sum + "\nBackup-2: "+ ob2Sum+ "\nBackup-3: "+ ob3Sum+ "\n"+ "\n//Sum of all the numbers after increment\n"+ "\nBST: " + rootSumUpdated + "\nBackup-1: "+ ob1SumUpdated + "\nBackup-2: "+ ob2SumUpdated + "\nBackup-3: "+ ob3SumUpdated;
+            String contentToWrite = "\n//Inorder traversal\n";
 
             bufferedWriter.write(contentToWrite);
 

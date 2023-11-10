@@ -1,13 +1,11 @@
 package courseSequencer.state;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Queue;
 
 public class Group1 implements CourseSequencerStateI {
     ArrayList<String> g1registeredList = new ArrayList<>();
-    Queue<String> g1WaitingList = new ArrayDeque<>();
     
+    Graduate graduate = new Graduate();
 
     Semester semester = new Semester();
 
@@ -38,7 +36,7 @@ public class Group1 implements CourseSequencerStateI {
             }
         }
         else if(option.equals("Waiting List")){
-            g1WaitingList.add(course);
+            semester.waitingQueue.add(course);
         }
         
 
