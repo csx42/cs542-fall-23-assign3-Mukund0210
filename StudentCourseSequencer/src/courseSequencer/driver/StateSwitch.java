@@ -11,7 +11,9 @@ import courseSequencer.util.FileInput;
 import courseSequencer.util.FileOutput;
 import courseSequencer.util.GroupIdentifier;
 
-public class StateProcesor {
+public class StateSwitch {
+
+     Graduate graduate = new Graduate();
 
     GroupIdentifier groupIdentifier = new GroupIdentifier();
     Group1 group1 = new Group1();
@@ -19,20 +21,18 @@ public class StateProcesor {
     Group3 group3 = new Group3();
     Group4 group4 = new Group4();
     Group5 group5 = new Group5();
-    Semester semester = new Semester();
-    Graduate graduate = new Graduate();
     FileOutput fileOutput = new FileOutput();
 
 
-    public void stateProcessor(){
+    public void methodCall(){
         FileInput fileInput = new FileInput("input.txt","errfile.txt");
 
         try{
-            while(!fileInput.hasNext()){
+            while(fileInput.hasNext()){
                 String inputLine = fileInput.getFileInput();
                 String[] splitInput = fileInput.splitValues(inputLine);
 
-                String studentID = splitInput[0];
+                int studentID = fileInput.studentId;
 
                 for(int i=1; i<splitInput.length;i++){
                     String course = splitInput[i];
@@ -40,35 +40,56 @@ public class StateProcesor {
                     if(group.equals("Group 1")){
                         String option = group1.checkCourses(course);
                         group1.register(course, option);
+                        if(graduate.canGraduate()){
+                            break;
+                        }
+
                     }
                     else if(group.equals("Group 2")){
                         String option = group2.checkCourses(course);
                         group2.register(course, option);
+                        if(graduate.canGraduate()){
+                            break;
+                        }
                     }
                     else if(group.equals("Group 3")){
                         String option = group3.checkCourses(course);
                         group3.register(course, option);
+                        if(graduate.canGraduate()){
+                            break;
+                        }
                     }
                     else if(group.equals("Group 4")){
                         String option = group4.checkCourses(course);
                         group4.register(course, option);
+                        if(graduate.canGraduate()){
+                            break;
+                        }
                     }
                     else{
                         group5.register(course, "Register");
+                        if(graduate.canGraduate()){
+                            break;
+                        }
                     }
 
 
 
                     if(graduate.canGraduate()){
-                        semester.reset();
                         break;
                     }
 
                 }
 
+                Semester semester = new Semester(group1,group2,group3,group4,group5);
+
                 semester.waitingListAllotment(semester.waitingQueue);
 
-                fileOutput.putFileOutput("Output.txt", studentID, studentID, semester.stateChanges);
+                String opCourses = String.join(" ", semester.courseList);
+
+                fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.stateChanges);
+
+                semester.reset();
 
          }
 

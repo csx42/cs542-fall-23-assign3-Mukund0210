@@ -15,7 +15,7 @@ public class Group3 implements CourseSequencerStateI {
 
     boolean stateSet = false;
 
-    int coursesRegistered = 0;
+    public int coursesRegistered = 0;
 
     public void setState(){
         stateSet = true;

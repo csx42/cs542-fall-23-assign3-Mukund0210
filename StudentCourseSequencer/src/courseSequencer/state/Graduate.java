@@ -1,5 +1,6 @@
 package courseSequencer.state;
 
+
 public class Graduate {
 
     Group1 group1 = new Group1();

@@ -7,14 +7,26 @@ import courseSequencer.util.GroupIdentifier;
 
 public class Semester {
 
-    ArrayList<String> courseList = new ArrayList<>();
+    public ArrayList<String> courseList = new ArrayList<>();
     public Queue<String> waitingQueue = new LinkedList<>();
     GroupIdentifier groupIdentifier = new GroupIdentifier();
-    Group1 group1 = new Group1();
-    Group2 group2 = new Group2();
-    Group3 group3 = new Group3();
-    Group4 group4 = new Group4();
-    Group5 group5 = new Group5();
+    Group1 group1;
+    Group2 group2;
+    Group3 group3;
+    Group4 group4;
+    Group5 group5;
+
+    public Semester(){
+        
+    }
+
+    public Semester(Group1 group1In,Group2 group2In,Group3 group3In,Group4 group4In,Group5 group5In){
+        this.group1 = group1In;
+        this.group2 = group2In;
+        this.group3 = group3In;
+        this.group4 = group4In;
+        this.group5 = group5In;
+    }
 
     public int stateChanges = 0;
 

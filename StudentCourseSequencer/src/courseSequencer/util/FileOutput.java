@@ -24,7 +24,7 @@ public class FileOutput implements FileOutputInterface{
      * @param ob2SumUpdated
      * @param ob3SumUpdated
      */
-    public void putFileOutput(String filename, String studentID, String courses, int stateChanges){
+    public void putFileOutput(String filename, int studentID, String courses, int stateChanges){
         
         String currDirectory = System.getProperty("user.dir");
         String resultsPath = currDirectory + File.separator + filename;
@@ -33,7 +33,7 @@ public class FileOutput implements FileOutputInterface{
 
             FileWriter filewriter = new FileWriter(resultsPath,true);
             BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
-            String contentToWrite = "\n//Inorder traversal\n";
+            String contentToWrite = studentID +": " + courses + " -- " + stateChanges;
 
             bufferedWriter.write(contentToWrite);
 

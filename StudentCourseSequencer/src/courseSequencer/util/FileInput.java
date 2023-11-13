@@ -12,6 +12,7 @@ public class FileInput implements FileInterface{
 
         private BufferedReader reader;
         private String currLine;
+        public int studentId = 0;
 
         public FileInput(String filenameIn, String errFile){
             try {
@@ -57,9 +58,12 @@ public class FileInput implements FileInterface{
 
         public String[] splitValues(String studentInfo){
 
-            String[] values = studentInfo.split("[:;]+");
+            String[] values = studentInfo.split(":\\s*", 2);
+            String coursesstring = values[1];
+            String[] courses = coursesstring.split("\\s+");
+            studentId = Integer.parseInt(values[0]);
     
-            return values;
+            return courses;
     
         }
 

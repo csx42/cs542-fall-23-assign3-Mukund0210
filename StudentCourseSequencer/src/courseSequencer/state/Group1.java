@@ -2,10 +2,9 @@ package courseSequencer.state;
 
 import java.util.ArrayList;
 
+
 public class Group1 implements CourseSequencerStateI {
     ArrayList<String> g1registeredList = new ArrayList<>();
-    
-    Graduate graduate = new Graduate();
 
     Semester semester = new Semester();
 
@@ -16,7 +15,7 @@ public class Group1 implements CourseSequencerStateI {
 
     boolean stateSet = false;
 
-    int coursesRegistered = 0;
+    public int coursesRegistered = 0;
 
     public void setState(){
         stateSet = true;
@@ -27,7 +26,7 @@ public class Group1 implements CourseSequencerStateI {
         if(option.equals("Register")){
             semester.courseList.add(course);
             g1registeredList.add(course);
-            coursesRegistered =+ 1;
+            coursesRegistered += 1;
             g1PrevEntry += 1;
 
             if(semester.courseList.size() % 3 == 0){
