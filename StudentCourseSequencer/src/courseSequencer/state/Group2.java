@@ -3,10 +3,16 @@ package courseSequencer.state;
 import java.util.ArrayList;
 
 public class Group2 implements CourseSequencerStateI {
-    ArrayList<String> g2registeredList = new ArrayList<>();
-    
 
-    Semester semester = new Semester();
+
+    Semester semester;
+
+
+    public void setSemester(Semester semesterIn){
+        this.semester = semesterIn;
+    }
+
+    ArrayList<String> g2registeredList = new ArrayList<>();
 
     int g1CurrEntry = 0;
     int g1PrevEntry = 0;
@@ -50,14 +56,18 @@ public class Group2 implements CourseSequencerStateI {
         }
 
 
-        if(semester.prevSemester < semester.currSemester && coursesRegistered == g1CurrEntry){
+        if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered == 0)){
             return "Register";
         }
-        else if(semester.prevSemester < semester.currSemester && coursesRegistered < g1CurrEntry){
+        else if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered < semester.currSemester )){
+            return "Register";
+        }
+        else if(semester.prevSemester < semester.currSemester && coursesRegistered == semester.currSemester ){
             return "Waiting List";
         }
         
         return "";
+
 
 
     }

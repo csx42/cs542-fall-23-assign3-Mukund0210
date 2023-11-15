@@ -6,4 +6,5 @@ public interface CourseSequencerStateI {
     public void register(String course, String option);
     public String checkCourses(String course);
     public int checkCurrentSum();
+    public void setSemester(Semester semesterIn);
 }

@@ -22,10 +22,17 @@ public class StateSwitch {
     Group4 group4 = new Group4();
     Group5 group5 = new Group5();
     FileOutput fileOutput = new FileOutput();
+    Semester semester = new Semester(group1,group2,group3,group4,group5);
+
 
 
     public void methodCall(){
         FileInput fileInput = new FileInput("input.txt","errfile.txt");
+        group1.setSemester(semester);
+        group2.setSemester(semester);
+        group3.setSemester(semester);
+        group4.setSemester(semester);
+        group5.setSemester(semester);
 
         try{
             while(fileInput.hasNext()){
@@ -34,13 +41,13 @@ public class StateSwitch {
 
                 int studentID = fileInput.studentId;
 
-                for(int i=1; i<splitInput.length;i++){
+                for(int i=0; i<splitInput.length;i++){
                     String course = splitInput[i];
                     String group = groupIdentifier.findGroup(course);
                     if(group.equals("Group 1")){
                         String option = group1.checkCourses(course);
                         group1.register(course, option);
-                        if(graduate.canGraduate()){
+                        if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
 
@@ -48,40 +55,38 @@ public class StateSwitch {
                     else if(group.equals("Group 2")){
                         String option = group2.checkCourses(course);
                         group2.register(course, option);
-                        if(graduate.canGraduate()){
+                        if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
                     }
                     else if(group.equals("Group 3")){
                         String option = group3.checkCourses(course);
                         group3.register(course, option);
-                        if(graduate.canGraduate()){
+                        if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
                     }
                     else if(group.equals("Group 4")){
                         String option = group4.checkCourses(course);
                         group4.register(course, option);
-                        if(graduate.canGraduate()){
+                        if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
                     }
                     else{
                         group5.register(course, "Register");
-                        if(graduate.canGraduate()){
+                        if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
                     }
 
 
 
-                    if(graduate.canGraduate()){
+                    if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                         break;
                     }
 
                 }
-
-                Semester semester = new Semester(group1,group2,group3,group4,group5);
 
                 semester.waitingListAllotment(semester.waitingQueue);
 

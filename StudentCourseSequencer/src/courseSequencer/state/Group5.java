@@ -3,9 +3,16 @@ package courseSequencer.state;
 import java.util.ArrayList;
 
 public class Group5 implements CourseSequencerStateI{
+
+    Semester semester;
+
+
+    public void setSemester(Semester semesterIn){
+        this.semester = semesterIn;
+    }
+
     
     ArrayList<String> g5registeredList = new ArrayList<>();
-    Semester semester = new Semester();
 
     boolean stateSet = false;
     public int coursesRegistered = 0;

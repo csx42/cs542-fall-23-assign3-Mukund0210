@@ -4,9 +4,14 @@ import java.util.ArrayList;
 
 
 public class Group1 implements CourseSequencerStateI {
-    ArrayList<String> g1registeredList = new ArrayList<>();
 
-    Semester semester = new Semester();
+    Semester semester;
+
+
+    public void setSemester(Semester semesterIn){
+        this.semester = semesterIn;
+    }
+    ArrayList<String> g1registeredList = new ArrayList<>();
 
     int g1CurrEntry = 0;
     int g1PrevEntry = 0;
@@ -29,7 +34,7 @@ public class Group1 implements CourseSequencerStateI {
             coursesRegistered += 1;
             g1PrevEntry += 1;
 
-            if(semester.courseList.size() % 3 == 0){
+            if(semester.courseList.size() != 0 && semester.courseList.size() % 3 == 0){
                 semester.prevSemester = semester.currSemester;
                 semester.currSemester += 1; 
             }
@@ -44,16 +49,19 @@ public class Group1 implements CourseSequencerStateI {
     public String checkCourses(String course){
 
         for(int i  = 0; i<g1Courses.length; i++){
-            if(g1Courses[i] == course){
+            if(g1Courses[i].equals(course)){
                 g1CurrEntry = i;
             }
         }
 
 
-        if(semester.prevSemester < semester.currSemester && coursesRegistered == g1CurrEntry){
+        if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered == 0)){
             return "Register";
         }
-        else if(semester.prevSemester < semester.currSemester && coursesRegistered < g1CurrEntry){
+        else if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered < semester.currSemester )){
+            return "Register";
+        }
+        else if(semester.prevSemester < semester.currSemester && coursesRegistered == semester.currSemester ){
             return "Waiting List";
         }
         
