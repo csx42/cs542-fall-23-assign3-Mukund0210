@@ -7,6 +7,8 @@ public class Group2 implements CourseSequencerStateI {
 
     Semester semester;
 
+    int semesterNum = 0;
+
 
     public void setSemester(Semester semesterIn){
         this.semester = semesterIn;
@@ -34,6 +36,7 @@ public class Group2 implements CourseSequencerStateI {
             g2registeredList.add(course);
             coursesRegistered =+ 1;
             g1PrevEntry += 1;
+            semesterNum = semester.currSemester;
 
             if(semester.courseList.size() % 3 == 0){
                 semester.prevSemester = semester.currSemester;
@@ -50,7 +53,7 @@ public class Group2 implements CourseSequencerStateI {
     public String checkCourses(String course){
 
         for(int i  = 0; i<g2Courses.length; i++){
-            if(g2Courses[i] == course){
+            if(g2Courses[i].equals(course)){
                 g1CurrEntry = i;
             }
         }
@@ -59,10 +62,10 @@ public class Group2 implements CourseSequencerStateI {
         if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered == 0)){
             return "Register";
         }
-        else if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && coursesRegistered < semester.currSemester )){
+        else if(semester.prevSemester < semester.currSemester && (coursesRegistered == g1CurrEntry && semesterNum < semester.currSemester )){
             return "Register";
         }
-        else if(semester.prevSemester < semester.currSemester && coursesRegistered == semester.currSemester ){
+        else if(semester.prevSemester < semester.currSemester && coursesRegistered <= semester.currSemester ){
             return "Waiting List";
         }
         

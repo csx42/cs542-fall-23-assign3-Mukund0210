@@ -22,7 +22,7 @@ public class StateSwitch {
     Group4 group4 = new Group4();
     Group5 group5 = new Group5();
     FileOutput fileOutput = new FileOutput();
-    Semester semester = new Semester(group1,group2,group3,group4,group5);
+    Semester semester = new Semester(group1,group2,group3,group4,group5,graduate);
 
 
 

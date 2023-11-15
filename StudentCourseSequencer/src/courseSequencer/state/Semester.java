@@ -15,17 +15,19 @@ public class Semester {
     Group3 group3;
     Group4 group4;
     Group5 group5;
+    Graduate graduate;
 
     public Semester(){
         
     }
 
-    public Semester(Group1 group1In,Group2 group2In,Group3 group3In,Group4 group4In,Group5 group5In){
+    public Semester(Group1 group1In,Group2 group2In,Group3 group3In,Group4 group4In,Group5 group5In, Graduate graduateIn){
         this.group1 = group1In;
         this.group2 = group2In;
         this.group3 = group3In;
         this.group4 = group4In;
         this.group5 = group5In;
+        this.graduate = graduateIn;
     }
 
     public int stateChanges = 0;
@@ -63,28 +65,32 @@ public class Semester {
 
    public void waitingListAllotment(Queue<String> waitingQueue){
         
-        String currCourse = waitingQueue.poll();
-        String group = groupIdentifier.findGroup(currCourse);
-        if(group.equals("Group 1")){
-            String option = group1.checkCourses(currCourse);
-            group1.register(currCourse, option);
-        }
-        else if(group.equals("Group 2")){
-        
-        }
-        else if(group.equals("Group 3")){
 
-        }
-        else if(group.equals("Group 4")){
+        while(!waitingQueue.isEmpty() || graduate.canGraduate(group1,group2,group3,group4,group5)){
+            String currCourse = waitingQueue.poll();
+            String group = groupIdentifier.findGroup(currCourse);
+            if(group.equals("Group 1")){
+                String option = group1.checkCourses(currCourse);
+                group1.register(currCourse, option);
 
+            }
+            else if(group.equals("Group 2")){
+                String option = group2.checkCourses(currCourse);
+                group2.register(currCourse, option);
+            }
+            else if(group.equals("Group 3")){
+                String option = group3.checkCourses(currCourse);
+                group3.register(currCourse, option);
+            }
+            else if(group.equals("Group 4")){
+                String option = group4.checkCourses(currCourse);
+                group4.register(currCourse, option);
+            }
+            else{
+                group5.register(currCourse, "Register");
+            }
         }
-        else{
 
-        }
-
-        if(!waitingQueue.isEmpty()){
-            waitingListAllotment(waitingQueue);
-        }
    }
 
 
