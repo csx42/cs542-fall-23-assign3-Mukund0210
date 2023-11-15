@@ -33,7 +33,7 @@ public class Group3 implements CourseSequencerStateI {
         if(option.equals("Register")){
             semester.courseList.add(course);
             g3registeredList.add(course);
-            coursesRegistered =+ 1;
+            coursesRegistered = g3registeredList.size();
             g1PrevEntry += 1;
             semesterNum = semester.currSemester;
 

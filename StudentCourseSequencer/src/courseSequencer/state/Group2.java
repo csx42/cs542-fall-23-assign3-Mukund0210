@@ -23,7 +23,7 @@ public class Group2 implements CourseSequencerStateI {
 
     boolean stateSet = false;
 
-    int coursesRegistered = 0;
+    public int coursesRegistered = 0;
 
     public void setState(){
         stateSet = true;
@@ -34,7 +34,7 @@ public class Group2 implements CourseSequencerStateI {
         if(option.equals("Register")){
             semester.courseList.add(course);
             g2registeredList.add(course);
-            coursesRegistered =+ 1;
+            coursesRegistered = g2registeredList.size();
             g1PrevEntry += 1;
             semesterNum = semester.currSemester;
 

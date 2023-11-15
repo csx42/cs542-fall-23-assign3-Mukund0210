@@ -46,6 +46,12 @@ public class StateSwitch {
                     String group = groupIdentifier.findGroup(course);
                     if(group.equals("Group 1")){
                         String option = group1.checkCourses(course);
+                        if(option.equals("Register")){
+                            String stateSetter = semester.compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                            if(!stateSetter.equals(semester.currState)){
+                                semester.numOfStateChanges =+1;
+                            }
+                        }
                         group1.register(course, option);
                         if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
@@ -54,6 +60,12 @@ public class StateSwitch {
                     }
                     else if(group.equals("Group 2")){
                         String option = group2.checkCourses(course);
+                        if(option.equals("Register")){
+                            String stateSetter = semester.compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                            if(!stateSetter.equals(semester.currState)){
+                                semester.numOfStateChanges =+1;
+                            }
+                        }
                         group2.register(course, option);
                         if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
@@ -61,6 +73,12 @@ public class StateSwitch {
                     }
                     else if(group.equals("Group 3")){
                         String option = group3.checkCourses(course);
+                        if(option.equals("Register")){
+                            String stateSetter = semester.compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                            if(!stateSetter.equals(semester.currState)){
+                                semester.numOfStateChanges =+1;
+                            }
+                        }
                         group3.register(course, option);
                         if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
@@ -68,6 +86,12 @@ public class StateSwitch {
                     }
                     else if(group.equals("Group 4")){
                         String option = group4.checkCourses(course);
+                        if(option.equals("Register")){
+                            String stateSetter = semester.compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                            if(!stateSetter.equals(semester.currState)){
+                                semester.numOfStateChanges =+1;
+                            }
+                        }
                         group4.register(course, option);
                         if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
@@ -75,6 +99,10 @@ public class StateSwitch {
                     }
                     else{
                         group5.register(course, "Register");
+                            String stateSetter = semester.compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                            if(!stateSetter.equals(semester.currState)){
+                                semester.numOfStateChanges =+1;
+                            }
                         if(graduate.canGraduate(group1,group2,group3,group4,group5)){
                             break;
                         }
@@ -92,9 +120,9 @@ public class StateSwitch {
 
                 String opCourses = String.join(" ", semester.courseList);
 
-                fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.stateChanges);
+                fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.numOfStateChanges);
 
-                semester.reset();
+                semester.reset(group1,group2,group3,group4,group5);
 
          }
 

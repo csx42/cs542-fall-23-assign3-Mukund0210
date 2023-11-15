@@ -33,7 +33,7 @@ public class Group4 implements CourseSequencerStateI {
         if(option.equals("Register")){
             semester.courseList.add(course);
             g4registeredList.add(course);
-            coursesRegistered =+ 1;
+            coursesRegistered = g4registeredList.size();
             g1PrevEntry += 1;
             semesterNum = semester.currSemester;
 

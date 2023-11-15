@@ -26,7 +26,7 @@ public class Group5 implements CourseSequencerStateI{
         if(option.equals("Register")){
             semester.courseList.add(course);
             g5registeredList.add(course);
-            coursesRegistered =+ 1;
+            coursesRegistered = g5registeredList.size();
 
             if(semester.courseList.size() % 3 == 0){
                 semester.prevSemester = semester.currSemester;

@@ -17,6 +17,9 @@ public class Semester {
     Group5 group5;
     Graduate graduate;
 
+    public String currState = "";
+    public int numOfStateChanges = 0;
+
     public Semester(){
         
     }
@@ -30,8 +33,6 @@ public class Semester {
         this.graduate = graduateIn;
     }
 
-    public int stateChanges = 0;
-
    int currSemester = 1;
    int prevSemester = 0;
 
@@ -43,22 +44,22 @@ public class Semester {
        this.currSemester = currSemester;
    }
 
-   public int compareStateSum(int g1Sum,int g2Sum,int g3Sum,int g4Sum,int g5Sum){
+   public String compareStateSum(int g1Sum,int g2Sum,int g3Sum,int g4Sum,int g5Sum){
 
         if(g1Sum>g2Sum && g1Sum>g3Sum && g1Sum>g4Sum && g1Sum>g5Sum){
-            return g1Sum;
+            return "Group 1";
         }
         else if(g2Sum>g3Sum && g2Sum>g4Sum && g2Sum> g5Sum){
-            return g2Sum;
+            return "Group 2";
         }
         else if(g3Sum> g4Sum && g3Sum>g5Sum){
-            return g3Sum;
+            return "Group 3";
         }
         else if(g4Sum>g5Sum){
-            return g4Sum;
+            return "Group 4";
         }
 
-        return g5Sum;
+        return "Group 5";
 
    }
 
@@ -66,27 +67,59 @@ public class Semester {
    public void waitingListAllotment(Queue<String> waitingQueue){
         
 
-        while(!waitingQueue.isEmpty() || graduate.canGraduate(group1,group2,group3,group4,group5)){
+        while(!waitingQueue.isEmpty()){
+            boolean willGraduate = graduate.canGraduate(group1,group2,group3,group4,group5);
+            if(willGraduate){
+                break;
+            }
             String currCourse = waitingQueue.poll();
             String group = groupIdentifier.findGroup(currCourse);
             if(group.equals("Group 1")){
                 String option = group1.checkCourses(currCourse);
+                if(option.equals("Register")){
+                    String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                    if(!stateSetter.equals(currState)){
+                        numOfStateChanges =+1;
+                    }
+                }
                 group1.register(currCourse, option);
 
             }
             else if(group.equals("Group 2")){
                 String option = group2.checkCourses(currCourse);
+                if(option.equals("Register")){
+                    String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                    if(!stateSetter.equals(currState)){
+                        numOfStateChanges =+1;
+                    }
+                }
                 group2.register(currCourse, option);
             }
             else if(group.equals("Group 3")){
                 String option = group3.checkCourses(currCourse);
+                if(option.equals("Register")){
+                    String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                    if(!stateSetter.equals(currState)){
+                        numOfStateChanges =+1;
+                    }
+                }
                 group3.register(currCourse, option);
             }
             else if(group.equals("Group 4")){
                 String option = group4.checkCourses(currCourse);
+                if(option.equals("Register")){
+                    String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                    if(!stateSetter.equals(currState)){
+                        numOfStateChanges =+1;
+                    }
+                }
                 group4.register(currCourse, option);
             }
             else{
+                    String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
+                    if(!stateSetter.equals(currState)){
+                        numOfStateChanges =+1;
+                    }
                 group5.register(currCourse, "Register");
             }
         }
@@ -94,15 +127,39 @@ public class Semester {
    }
 
 
-   public void reset(){
+   public void reset(Group1 g1, Group2 g2, Group3 g3, Group4 g4, Group5 g5){
 
         courseList.clear();
         waitingQueue.clear();
-        group1.coursesRegistered = 0;
-        group2.coursesRegistered = 0;
-        group3.coursesRegistered = 0;
-        group4.coursesRegistered = 0;
-        group5.coursesRegistered = 0;
+        
+        
+        g1.coursesRegistered = 0;
+        g2.coursesRegistered = 0;
+        g3.coursesRegistered = 0;
+        g4.coursesRegistered = 0;
+        g5.coursesRegistered = 0;
+        
+        
+        g1.g1registeredList.clear();
+        g2.g2registeredList.clear();
+        g3.g3registeredList.clear();
+        g4.g4registeredList.clear();
+        g5.g5registeredList.clear();
+        
+        
+        g1.semesterNum = 0;
+        g2.semesterNum = 0;
+        g3.semesterNum = 0;
+        g4.semesterNum = 0;
+
+        g1.g1PrevEntry = 0;
+        g1.g1CurrEntry = 0;
+        g2.g1PrevEntry = 0;
+        g2.g1CurrEntry = 0;
+        g3.g1CurrEntry = 0;
+        g3.g1PrevEntry = 0;
+        g4.g1CurrEntry = 0;
+        g4.g1PrevEntry = 0;
    }
 
 }
