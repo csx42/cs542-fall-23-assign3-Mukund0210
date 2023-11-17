@@ -58,6 +58,9 @@ public class Semester {
         else if(g4Sum>g5Sum){
             return "Group 4";
         }
+        else if(g5Sum == g4Sum){
+            return "equal";
+        }
 
         return "Group 5";
 
@@ -78,8 +81,33 @@ public class Semester {
                 String option = group1.checkCourses(currCourse);
                 if(option.equals("Register")){
                     String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
-                    if(!stateSetter.equals(currState)){
+                    if(stateSetter.equals("Group 1") && !currState.equals("Group 1")){
                         numOfStateChanges =+1;
+                        group1.setState();
+                        currState = "Group 1";
+                    }
+                    else if(stateSetter.equals("Group 2") && !currState.equals("Group 2")){
+                        numOfStateChanges =+1;
+                        group2.setState();
+                        currState = "Group 2";
+                    }
+                    else if(stateSetter.equals("Group 3") && !currState.equals("Group 3")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 3";
+                    }
+                    else if(stateSetter.equals("Group 4") && !currState.equals("Group 4")){
+                        numOfStateChanges =+1;
+                        group4.setState();
+                        currState = "Group 4";
+                    }
+                    else if(stateSetter.equals("Group 5") && !currState.equals("Group 5")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 5";
+                    }
+                    else{
+                        continue;
                     }
                 }
                 group1.register(currCourse, option);
@@ -89,8 +117,33 @@ public class Semester {
                 String option = group2.checkCourses(currCourse);
                 if(option.equals("Register")){
                     String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
-                    if(!stateSetter.equals(currState)){
+                    if(stateSetter.equals("Group 1") && !currState.equals("Group 1")){
                         numOfStateChanges =+1;
+                        group1.setState();
+                        currState = "Group 1";
+                    }
+                    else if(stateSetter.equals("Group 2") && !currState.equals("Group 2")){
+                        numOfStateChanges =+1;
+                        group2.setState();
+                        currState = "Group 2";
+                    }
+                    else if(stateSetter.equals("Group 3") && !currState.equals("Group 3")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 3";
+                    }
+                    else if(stateSetter.equals("Group 4") && !currState.equals("Group 4")){
+                        numOfStateChanges =+1;
+                        group4.setState();
+                        currState = "Group 4";
+                    }
+                    else if(stateSetter.equals("Group 5") && !currState.equals("Group 5")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 5";
+                    }
+                    else{
+                        continue;
                     }
                 }
                 group2.register(currCourse, option);
@@ -99,8 +152,33 @@ public class Semester {
                 String option = group3.checkCourses(currCourse);
                 if(option.equals("Register")){
                     String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
-                    if(!stateSetter.equals(currState)){
+                    if(stateSetter.equals("Group 1") && !currState.equals("Group 1")){
                         numOfStateChanges =+1;
+                        group1.setState();
+                        currState = "Group 1";
+                    }
+                    else if(stateSetter.equals("Group 2") && !currState.equals("Group 2")){
+                        numOfStateChanges =+1;
+                        group2.setState();
+                        currState = "Group 2";
+                    }
+                    else if(stateSetter.equals("Group 3") && !currState.equals("Group 3")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 3";
+                    }
+                    else if(stateSetter.equals("Group 4") && !currState.equals("Group 4")){
+                        numOfStateChanges =+1;
+                        group4.setState();
+                        currState = "Group 4";
+                    }
+                    else if(stateSetter.equals("Group 5") && !currState.equals("Group 5")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 5";
+                    }
+                    else{
+                        continue;
                     }
                 }
                 group3.register(currCourse, option);
@@ -109,17 +187,70 @@ public class Semester {
                 String option = group4.checkCourses(currCourse);
                 if(option.equals("Register")){
                     String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
-                    if(!stateSetter.equals(currState)){
+                    if(stateSetter.equals("Group 1") && !currState.equals("Group 1")){
                         numOfStateChanges =+1;
+                        group1.setState();
+                        currState = "Group 1";
+                    }
+                    else if(stateSetter.equals("Group 2") && !currState.equals("Group 2")){
+                        numOfStateChanges =+1;
+                        group2.setState();
+                        currState = "Group 2";
+                    }
+                    else if(stateSetter.equals("Group 3") && !currState.equals("Group 3")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 3";
+                    }
+                    else if(stateSetter.equals("Group 4") && !currState.equals("Group 4")){
+                        numOfStateChanges =+1;
+                        group4.setState();
+                        currState = "Group 4";
+                    }
+                    else if(stateSetter.equals("Group 5") && !currState.equals("Group 5")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 5";
+                    }
+                    else{
+                        continue;
                     }
                 }
                 group4.register(currCourse, option);
             }
             else{
+                    String option = "Register";
+                    if(option.equals("Register")){
                     String stateSetter = compareStateSum(group1.coursesRegistered, group2.coursesRegistered ,group3.coursesRegistered,group4.coursesRegistered,group5.coursesRegistered);
-                    if(!stateSetter.equals(currState)){
+                    if(stateSetter.equals("Group 1") && !currState.equals("Group 1")){
                         numOfStateChanges =+1;
+                        group1.setState();
+                        currState = "Group 1";
                     }
+                    else if(stateSetter.equals("Group 2") && !currState.equals("Group 2")){
+                        numOfStateChanges =+1;
+                        group2.setState();
+                        currState = "Group 2";
+                    }
+                    else if(stateSetter.equals("Group 3") && !currState.equals("Group 3")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 3";
+                    }
+                    else if(stateSetter.equals("Group 4") && !currState.equals("Group 4")){
+                        numOfStateChanges =+1;
+                        group4.setState();
+                        currState = "Group 4";
+                    }
+                    else if(stateSetter.equals("Group 5") && !currState.equals("Group 5")){
+                        numOfStateChanges =+1;
+                        group3.setState();
+                        currState = "Group 5";
+                    }
+                    else{
+                        continue;
+                    }
+                }
                 group5.register(currCourse, "Register");
             }
         }
