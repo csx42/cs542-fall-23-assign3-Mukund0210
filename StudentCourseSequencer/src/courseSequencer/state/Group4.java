@@ -78,4 +78,7 @@ public class Group4 implements CourseSequencerStateI {
         return coursesRegistered;
     }
 
+    public Semester getSemester(){
+        return semester;
+    }
 }

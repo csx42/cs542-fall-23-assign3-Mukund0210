@@ -45,4 +45,7 @@ public class Group5 implements CourseSequencerStateI{
         return coursesRegistered;
     }
 
+    public Semester getSemester(){
+        return semester;
+    }
 }
