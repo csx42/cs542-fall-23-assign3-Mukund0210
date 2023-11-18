@@ -4,5 +4,5 @@ public interface FileInterface {
     public String getFileInput();
     public boolean hasNext(); 
     public String[] splitValues(String studentInfo);
-    
+    public void deleteOutputFiles(String Output);
 }

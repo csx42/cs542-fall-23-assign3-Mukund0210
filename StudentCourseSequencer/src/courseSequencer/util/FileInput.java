@@ -14,7 +14,10 @@ public class FileInput implements FileInterface{
         private String currLine;
         public int studentId = 0;
 
-        public FileInput(String filenameIn, String errFile){
+        public FileInput(String filenameIn, String outputFile, String errFile){
+
+            deleteOutputFiles(outputFile);
+
             try {
                 String currDirectory = System.getProperty("user.dir");
                 String coursePrefsPath = currDirectory + File.separator + filenameIn; 
@@ -65,6 +68,20 @@ public class FileInput implements FileInterface{
     
             return courses;
     
+        }
+
+
+        public void deleteOutputFiles(String Output){
+            String resfile = Output;
+
+            String currDirectory = System.getProperty("user.dir");
+            String resPath = currDirectory + File.separator + resfile;
+    
+            File resfilesToDelete = new File(resPath);
+    
+            if(resfilesToDelete.exists()){
+                resfilesToDelete.delete();
+            }
         }
 
         public String toString(){ return "";}

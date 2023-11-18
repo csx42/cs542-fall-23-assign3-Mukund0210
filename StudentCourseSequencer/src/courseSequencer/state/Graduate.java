@@ -13,4 +13,6 @@ public class Graduate {
         return false;
         
     }
+
+    public String toString(){ return "";}
 }

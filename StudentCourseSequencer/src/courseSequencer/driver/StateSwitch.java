@@ -26,8 +26,8 @@ public class StateSwitch {
 
 
 
-    public void methodCall(){
-        FileInput fileInput = new FileInput("input.txt","errfile.txt");
+    public void methodCall(String inputFile, String outputFile, String errFile){
+        FileInput fileInput = new FileInput(inputFile,outputFile,errFile);
         group1.setSemester(semester);
         group2.setSemester(semester);
         group3.setSemester(semester);
@@ -253,7 +253,7 @@ public class StateSwitch {
 
                 fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.numOfStateChanges);
 
-                semester.reset(group1,group2,group3,group4,group5);
+                semester.reset(group1,group2,group3,group4,group5,semester);
 
          }
 
@@ -267,6 +267,6 @@ public class StateSwitch {
         }
     }
     
-    
+    public String toString(){ return "";}
 
 }

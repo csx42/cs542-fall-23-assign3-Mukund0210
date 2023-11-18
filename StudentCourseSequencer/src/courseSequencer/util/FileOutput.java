@@ -33,7 +33,7 @@ public class FileOutput implements FileOutputInterface{
 
             FileWriter filewriter = new FileWriter(resultsPath,true);
             BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
-            String contentToWrite = studentID +": " + courses + " -- " + stateChanges;
+            String contentToWrite = studentID +": " + courses + " -- " + stateChanges + "\n";
 
             bufferedWriter.write(contentToWrite);
 

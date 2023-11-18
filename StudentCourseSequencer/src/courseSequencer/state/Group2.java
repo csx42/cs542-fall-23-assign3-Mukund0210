@@ -83,4 +83,6 @@ public class Group2 implements CourseSequencerStateI {
         return semester;
     }
 
+    public String toString(){ return "";}
+
 }

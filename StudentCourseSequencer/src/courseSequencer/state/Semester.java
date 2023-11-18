@@ -72,7 +72,7 @@ public class Semester {
 
         while(!waitingQueue.isEmpty()){
             boolean willGraduate = graduate.canGraduate(group1,group2,group3,group4,group5);
-            if(willGraduate){
+            if(willGraduate){ //base case
                 break;
             }
             String currCourse = waitingQueue.poll();
@@ -263,7 +263,7 @@ public class Semester {
    }
 
 
-   public void reset(Group1 g1, Group2 g2, Group3 g3, Group4 g4, Group5 g5){
+   public void reset(Group1 g1, Group2 g2, Group3 g3, Group4 g4, Group5 g5, Semester semIn){
 
         courseList.clear();
         waitingQueue.clear();
@@ -296,10 +296,18 @@ public class Semester {
         g3.g1PrevEntry = 0;
         g4.g1CurrEntry = 0;
         g4.g1PrevEntry = 0;
+
+        semIn.currSemester = 1;
+        semIn.prevSemester = 0;
+        semIn.currState = "";
+        semIn.numOfStateChanges = 0;
+
    }
 
    public void incrementStateChange(Semester semIn){
         semIn.numOfStateChanges = semIn.numOfStateChanges + 1;
    }
+
+   public String toString(){ return "";}
 
 }
