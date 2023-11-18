@@ -251,7 +251,7 @@ public class StateSwitch {
 
                 String opCourses = String.join(" ", semester.courseList);
 
-                fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.numOfStateChanges);
+                fileOutput.putFileOutput("Output.txt", studentID, opCourses, semester.numOfStateChanges, semester.getCurrSemester());
 
                 semester.reset(group1,group2,group3,group4,group5,semester);
 

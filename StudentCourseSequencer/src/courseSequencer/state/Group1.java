@@ -10,6 +10,10 @@ public class Group1 implements CourseSequencerStateI {
     int semesterNum = 0;
 
 
+    
+    /** 
+     * @param semesterIn
+     */
     public void setSemester(Semester semesterIn){
         this.semester = semesterIn;
     }

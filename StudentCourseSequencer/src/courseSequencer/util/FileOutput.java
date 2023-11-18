@@ -11,20 +11,12 @@ public class FileOutput implements FileOutputInterface{
     
     /** 
      * @param filename
-     * @param rootmap
-     * @param backupmap1
-     * @param backupmap2
-     * @param backupmap3
-     * @param rootSum
-     * @param rootSumUpdated
-     * @param ob1Sum
-     * @param ob2Sum
-     * @param ob3Sum
-     * @param ob1SumUpdated
-     * @param ob2SumUpdated
-     * @param ob3SumUpdated
+     * @param studentID
+     * @param courses
+     * @param stateChanges
+     * @param numOfSemesters
      */
-    public void putFileOutput(String filename, int studentID, String courses, int stateChanges){
+    public void putFileOutput(String filename, int studentID, String courses, int stateChanges, int numOfSemesters){
         
         String currDirectory = System.getProperty("user.dir");
         String resultsPath = currDirectory + File.separator + filename;
@@ -33,7 +25,7 @@ public class FileOutput implements FileOutputInterface{
 
             FileWriter filewriter = new FileWriter(resultsPath,true);
             BufferedWriter bufferedWriter = new BufferedWriter(filewriter);
-            String contentToWrite = studentID +": " + courses + " -- " + stateChanges + "\n";
+            String contentToWrite = studentID +": " + courses + " -- " + stateChanges + " Semesters: " + numOfSemesters + "\n";
 
             bufferedWriter.write(contentToWrite);
 

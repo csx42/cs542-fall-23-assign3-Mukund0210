@@ -36,6 +36,10 @@ public class Semester {
    int currSemester = 1;
    int prevSemester = 0;
 
+   
+   /** 
+    * @return int
+    */
    public int getCurrSemester() {
        return currSemester;
    }
